@@ -1,5 +1,6 @@
 package keyin.http.cli;
 
+import domain.AirCraftReport;
 import domain.AirPort;
 import domain.City;
 import domain.CityReport;
@@ -70,6 +71,67 @@ public class HTTPRestCLIApplication {
     }
 
 
+    public String generateAirCraftReport() {
+        AirCraftReport aircraft = getRestClient().getAirCraft();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(aircraft.getAirCraft().getAirCraft_id());
+        report.append(" - ");
+        report.append(aircraft.getAirCraft().getType());
+        report.append(" - ");
+        report.append(aircraft.getAirCraft().getAirlineName());
+        report.append(" - ");
+        report.append("Airports:\n");
+        for(AirPort airport: aircraft.getAirports() ){
+            report.append(airport.getId());
+            report.append(" - ");
+            report.append(airport.getName());
+            if (aircraft.getAirports().indexOf(airport) != (aircraft.getAirports().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generateAllAirCraftReport() {
+        List<AirCraftReport> airCrafts = getRestClient().getAllAirCrafts();
+
+        StringBuffer report = new StringBuffer();
+
+
+        for(AirCraftReport airCraft: airCrafts) {
+            report.append(airCraft.getAirCraft().getAirCraft_id());
+            report.append(" - ");
+            report.append(airCraft.getAirCraft().getType());
+            report.append(" - ");
+            report.append(airCraft.getAirCraft().getAirlineName());
+            report.append(" - ");
+            report.append("Airports:\n");
+            for (AirPort airport : airCraft.getAirports()) {
+                report.append(airport.getId());
+                report.append(" - ");
+                report.append(airport.getName());
+                if (airCraft.getAirports().indexOf(airport) != (airCraft.getAirports().size() - 1)) {
+                    report.append(", ");
+                }
+            }
+        }
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+
     private void listGreetings() {
         System.out.println(getRestClient().getResponseFromHTTPRequest());
     }
@@ -105,7 +167,7 @@ public class HTTPRestCLIApplication {
             if (serverURL.contains("greeting")) {
                 cliApp.listGreetings();
             } else {
-                cliApp.generateAllCityReport();
+                cliApp.generateAirCraftReport();
             }
         }
 
