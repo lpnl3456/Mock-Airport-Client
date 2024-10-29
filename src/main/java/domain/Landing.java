@@ -1,18 +1,15 @@
 package domain;
 
-import com.keyin.rest.Airport.AirPort;
-import jakarta.persistence.*;
+import domain.AirPort;
 
-@Entity
+import java.util.Date;
+
+
 public class Landing {
-    @Id
-    @SequenceGenerator(name = "landing_sequence", sequenceName = "landing_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "landing_sequence")
-    private long landing_id;
 
-    @ManyToOne
+    private long landing_id;
     AirPort landingLocation;
-   //Date landingTime;
+   Date landingTime;
 
     public long getLanding_id() {
         return landing_id;
@@ -30,13 +27,13 @@ public class Landing {
         this.landingLocation = landingLocation;
     }
 
-   /* public Date getLandingTime() {
+    public Date getLandingTime() {
         return landingTime;
     }
 
     public void setLandingTime(Date landingTime) {
         this.landingTime = landingTime;
-    }*/
+    }
 
 
 
