@@ -1,19 +1,16 @@
 package domain;
 
-import com.keyin.rest.City.City;
-import jakarta.persistence.*;
+import domain.City;
 
 
-@Entity
+
 public class Passenger {
-    @Id
-    @SequenceGenerator(name = "passenger_sequence", sequenceName = "passenger_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "passenger_sequence")
+
     private int passenger_id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    @ManyToOne
+
     private City city;
 
     public Passenger() {

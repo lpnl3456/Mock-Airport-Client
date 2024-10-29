@@ -1,18 +1,16 @@
 package domain;
 
-import com.keyin.rest.Airport.AirPort;
-import jakarta.persistence.*;
+import domain.AirPort;
+
 
 import java.util.Date;
 
-@Entity
+
 public class TakeOff {
-    @Id
-    @SequenceGenerator(name = "takeOff_sequence", sequenceName = "takeOff_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "takeOff_sequence")
+
     private long takeOff_id;
 
-    @ManyToOne
+
     AirPort takeOffLocation;
     Date takeOffTime;
 

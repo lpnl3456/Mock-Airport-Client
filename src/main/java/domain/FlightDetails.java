@@ -1,29 +1,28 @@
 package domain;
 
-import com.keyin.rest.AirCraft.AirCraft;
-import com.keyin.rest.Landing.Landing;
-import com.keyin.rest.Passenger.Passenger;
-import com.keyin.rest.TakeOff.TakeOff;
-import jakarta.persistence.*;
+import domain.AirCraft;
+import domain.Passenger;
+import domain.FlightDetails;
+import domain.Landing;
+import domain.Landing;
+
 
 import java.util.List;
 
-@Entity
+
 public class FlightDetails {
-    @Id
-    @SequenceGenerator(name = "flight_sequence", sequenceName = "flight_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "flight_sequence")
+
     long flight_id;
 
-    @ManyToOne
+
     AirCraft airCraft;
 
-    @ManyToMany
+
     List<Passenger> passengers;
 
-    @OneToOne
+
     TakeOff takeOff;
-    @OneToOne
+
     Landing landing;
 
     public Landing getLanding() {

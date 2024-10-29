@@ -1,15 +1,10 @@
 package domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 
-@Entity
+
+
 public class AirCraft {
-    @Id
-    @SequenceGenerator(name = "airCraft_sequence", sequenceName = "airCraft_sequence", allocationSize = 1, initialValue = 1)
-    @GeneratedValue(generator = "airCraft_sequence")
+
     private int airCraft_id;
     private String type;
     private String airlineName;
