@@ -230,6 +230,30 @@ public class RestClient {
         return passengers;
     }
 
+    public List<PassengerAirCraftReport> getAllAirCraftPassengers() {
+        List<PassengerAirCraftReport> passengers = new ArrayList<PassengerAirCraftReport>();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passengers = buildAllAirCraftPassengerFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passengers;
+    }
+
     public PassengerAirPortReport buildPassengerFromResponse(String response) throws JsonProcessingException {
         PassengerAirPortReport passenger;
 
@@ -246,6 +270,16 @@ public class RestClient {
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         passengers = mapper.readValue(response, new TypeReference<List<PassengerAirPortReport>>(){});
+
+        return passengers;
+    }
+
+    public List<PassengerAirCraftReport> buildAllAirCraftPassengerFromResponse(String response) throws JsonProcessingException {
+        List<PassengerAirCraftReport> passengers;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passengers = mapper.readValue(response, new TypeReference<List<PassengerAirCraftReport>>(){});
 
         return passengers;
     }
