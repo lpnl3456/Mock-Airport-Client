@@ -134,7 +134,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generatePassengerAirportReport() {
-       PassengerAirPortReport passengerAirPortReport = getRestClient().getPassenger();
+        PassengerAirPortReport passengerAirPortReport = getRestClient().getPassenger();
 
         StringBuffer report = new StringBuffer();
 
@@ -152,6 +152,46 @@ public class HTTPRestCLIApplication {
             report.append(airport.getName());
             if (passengerAirPortReport.getAirports().indexOf(airport) != (passengerAirPortReport.getAirports().size() - 1)) {
                 report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generateAllPassengerAirportReport() {
+        List<PassengerAirPortReport> passengerAirPortReports = getRestClient().getAllPassengers();
+
+        StringBuffer report = new StringBuffer();
+
+
+        for(PassengerAirPortReport passengerAirPortReport: passengerAirPortReports) {
+            try {
+                report.append(passengerAirPortReport.getPassenger().getFirstName());
+                report.append(" - ");
+                report.append(passengerAirPortReport.getPassenger().getLastName());
+                report.append(" - ");
+                report.append(passengerAirPortReport.getPassenger().getPhoneNumber());
+                report.append(" - ");
+                report.append("Airports:\n");
+                for (AirPort airport : passengerAirPortReport.getAirports()) {
+                    report.append(airport.getId());
+                    report.append(" - ");
+                    report.append(airport.getName());
+                    if (passengerAirPortReport.getAirports().indexOf(airport) != (passengerAirPortReport.getAirports().size() - 1)) {
+                        report.append("\n");
+                    }
+                }
+
+                report.append("\n");
+                report.append("\n");
+            }
+            catch(NullPointerException e){
+
             }
         }
 
@@ -199,7 +239,7 @@ public class HTTPRestCLIApplication {
             if (serverURL.contains("greeting")) {
                 cliApp.listGreetings();
             } else {
-                cliApp.generatePassengerAirportReport();
+                cliApp.generateAllPassengerAirportReport();
             }
         }
 
