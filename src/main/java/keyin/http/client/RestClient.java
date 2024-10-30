@@ -5,9 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import domain.AirPort;
-import domain.City;
-import domain.CityReport;
+import domain.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -108,6 +106,224 @@ public class RestClient {
 
         return cities;
     }
+
+
+
+
+
+
+    public AirCraftReport getAirCraft() {
+       AirCraftReport airCraft = new AirCraftReport();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            airCraft = buildAirCraftFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return airCraft;
+    }
+
+    public List<AirCraftReport> getAllAirCrafts() {
+        List<AirCraftReport> airCrafts = new ArrayList<AirCraftReport>();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            airCrafts = buildAllAircraftFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return airCrafts;
+    }
+
+    public AirCraftReport buildAirCraftFromResponse(String response) throws JsonProcessingException {
+        AirCraftReport aircrafts;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        aircrafts = mapper.readValue(response, new TypeReference<AirCraftReport>(){});
+
+        return aircrafts;
+    }
+
+    public List<AirCraftReport> buildAllAircraftFromResponse(String response) throws JsonProcessingException {
+        List<AirCraftReport> aircrafts;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        aircrafts = mapper.readValue(response, new TypeReference<List<AirCraftReport>>(){});
+
+        return aircrafts;
+    }
+
+
+
+    public PassengerAirPortReport getPassenger() {
+        PassengerAirPortReport passenger = new PassengerAirPortReport();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passenger = buildPassengerFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passenger;
+    }
+
+    public List<PassengerAirPortReport> getAllPassengers() {
+        List<PassengerAirPortReport> passengers = new ArrayList<PassengerAirPortReport>();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passengers = buildAllPassengerFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passengers;
+    }
+
+
+
+
+    public PassengerAirCraftReport getAirCraftPassenger() {
+        PassengerAirCraftReport passenger = new PassengerAirCraftReport();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passenger = buildPassengerAirCraftFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passenger;
+    }
+
+    public List<PassengerAirCraftReport> getAllAirCraftPassengers() {
+        List<PassengerAirCraftReport> passengers = new ArrayList<PassengerAirCraftReport>();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passengers = buildAllAirCraftPassengerFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passengers;
+    }
+
+    public PassengerAirPortReport buildPassengerFromResponse(String response) throws JsonProcessingException {
+        PassengerAirPortReport passenger;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passenger = mapper.readValue(response, new TypeReference<PassengerAirPortReport>(){});
+
+        return passenger;
+    }
+
+    public List<PassengerAirPortReport> buildAllPassengerFromResponse(String response) throws JsonProcessingException {
+        List<PassengerAirPortReport> passengers;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passengers = mapper.readValue(response, new TypeReference<List<PassengerAirPortReport>>(){});
+
+        return passengers;
+    }
+
+    public List<PassengerAirCraftReport> buildAllAirCraftPassengerFromResponse(String response) throws JsonProcessingException {
+        List<PassengerAirCraftReport> passengers;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passengers = mapper.readValue(response, new TypeReference<List<PassengerAirCraftReport>>(){});
+
+        return passengers;
+    }
+
+    public PassengerAirCraftReport buildPassengerAirCraftFromResponse(String response) throws JsonProcessingException {
+        PassengerAirCraftReport passenger;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passenger = mapper.readValue(response, new TypeReference<PassengerAirCraftReport>() {
+        });
+
+        return passenger;
+    }
+
+
+
 
     public String getServerURL() {
         return serverURL;

@@ -1,8 +1,6 @@
 package keyin.http.cli;
 
-import domain.AirPort;
-import domain.City;
-import domain.CityReport;
+import domain.*;
 import keyin.http.client.RestClient;
 
 import java.util.List;
@@ -34,6 +32,8 @@ public class HTTPRestCLIApplication {
 
 
 
+
+
         System.out.println(report.toString());
 
         return report.toString();
@@ -59,7 +59,217 @@ public class HTTPRestCLIApplication {
                     report.append(", ");
                 }
             }
+            report.append("\n");
         }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+
+    public String generateAirCraftReport() {
+        AirCraftReport aircraft = getRestClient().getAirCraft();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(aircraft.getAirCraft().getAirCraft_id());
+        report.append(" - ");
+        report.append(aircraft.getAirCraft().getType());
+        report.append(" - ");
+        report.append(aircraft.getAirCraft().getAirlineName());
+        report.append(" - ");
+        report.append("Airports:\n");
+        for(AirPort airport: aircraft.getAirports() ){
+            report.append(airport.getId());
+            report.append(" - ");
+            report.append(airport.getName());
+            if (aircraft.getAirports().indexOf(airport) != (aircraft.getAirports().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generateAllAirCraftReport() {
+        List<AirCraftReport> airCrafts = getRestClient().getAllAirCrafts();
+
+        StringBuffer report = new StringBuffer();
+
+
+        for(AirCraftReport airCraft: airCrafts) {
+            report.append(airCraft.getAirCraft().getAirCraft_id());
+            report.append(" - ");
+            report.append(airCraft.getAirCraft().getType());
+            report.append(" - ");
+            report.append(airCraft.getAirCraft().getAirlineName());
+            report.append(" - ");
+            report.append("Airports:\n");
+            for (AirPort airport : airCraft.getAirports()) {
+                report.append(airport.getId());
+                report.append(" - ");
+                report.append(airport.getName());
+                if (airCraft.getAirports().indexOf(airport) != (airCraft.getAirports().size() - 1)) {
+                    report.append(", ");
+                }
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generatePassengerAirportReport() {
+        PassengerAirPortReport passengerAirPortReport = getRestClient().getPassenger();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(passengerAirPortReport.getPassenger().getFirstName());
+        report.append(" - ");
+        report.append(passengerAirPortReport.getPassenger().getLastName());
+        report.append(" - ");
+        report.append(passengerAirPortReport.getPassenger().getPhoneNumber());
+        report.append(" - ");
+        report.append("Airports:\n");
+        for(AirPort airport: passengerAirPortReport.getAirports() ){
+            report.append(airport.getId());
+            report.append(" - ");
+            report.append(airport.getName());
+            if (passengerAirPortReport.getAirports().indexOf(airport) != (passengerAirPortReport.getAirports().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generateAllPassengerAirportReport() {
+        List<PassengerAirPortReport> passengerAirPortReports = getRestClient().getAllPassengers();
+
+        StringBuffer report = new StringBuffer();
+
+
+        for(PassengerAirPortReport passengerAirPortReport: passengerAirPortReports) {
+            try {
+                report.append(passengerAirPortReport.getPassenger().getFirstName());
+                report.append(" - ");
+                report.append(passengerAirPortReport.getPassenger().getLastName());
+                report.append(" - ");
+                report.append(passengerAirPortReport.getPassenger().getPhoneNumber());
+                report.append(" - ");
+                report.append("Airports:\n");
+                for (AirPort airport : passengerAirPortReport.getAirports()) {
+                    report.append(airport.getId());
+                    report.append(" - ");
+                    report.append(airport.getName());
+                    if (passengerAirPortReport.getAirports().indexOf(airport) != (passengerAirPortReport.getAirports().size() - 1)) {
+                        report.append("\n");
+                    }
+                }
+
+                report.append("\n");
+                report.append("\n");
+            }
+            catch(NullPointerException e){
+
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generatePassengerAirCraftReport() {
+        PassengerAirCraftReport passengerAirCraftReport = getRestClient().getAirCraftPassenger();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(passengerAirCraftReport.getPassenger().getFirstName());
+        report.append(" - ");
+        report.append(passengerAirCraftReport.getPassenger().getLastName());
+        report.append(" - ");
+        report.append(passengerAirCraftReport.getPassenger().getPhoneNumber());
+        report.append(" - ");
+        report.append("AirCrafts:\n");
+        for(AirCraft airCraft: passengerAirCraftReport.getAirCrafts() ){
+            report.append(airCraft.getAirCraft_id());
+            report.append(" - ");
+            report.append(airCraft.getType());
+            report.append(" - ");
+            report.append(airCraft.getAirlineName());
+            if (passengerAirCraftReport.getAirCrafts().indexOf(airCraft) != (passengerAirCraftReport.getAirCrafts().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generateAllPassengerAirCraftReport() {
+        List<PassengerAirCraftReport> passengerAirCraftReports = getRestClient().getAllAirCraftPassengers();
+        StringBuffer report = new StringBuffer();
+
+
+        for(PassengerAirCraftReport passengerAirCraftReport: passengerAirCraftReports) {
+            try {
+                report.append(passengerAirCraftReport.getPassenger().getFirstName());
+                report.append(" - ");
+                report.append(passengerAirCraftReport.getPassenger().getLastName());
+                report.append(" - ");
+                report.append(passengerAirCraftReport.getPassenger().getPhoneNumber());
+                report.append(" - ");
+                report.append("AirCrafts:\n");
+                for (AirCraft airCraft : passengerAirCraftReport.getAirCrafts()) {
+                    report.append(airCraft.getAirCraft_id());
+                    report.append(" - ");
+                    report.append(airCraft.getType());
+                    report.append(" - ");
+                    report.append(airCraft.getAirlineName());
+                    if (passengerAirCraftReport.getAirCrafts().indexOf(airCraft) != (passengerAirCraftReport.getAirCrafts().size() - 1)) {
+                        report.append("\n");
+                    }
+                }
+
+                report.append("\n");
+                report.append("\n");
+            }
+            catch(NullPointerException e){
+
+            }
+        }
+
+
+
 
 
 
@@ -105,7 +315,7 @@ public class HTTPRestCLIApplication {
             if (serverURL.contains("greeting")) {
                 cliApp.listGreetings();
             } else {
-                cliApp.generateAllCityReport();
+                cliApp.generateAllPassengerAirCraftReport();
             }
         }
 
