@@ -1,9 +1,6 @@
 package keyin.http.cli;
 
-import domain.AirCraftReport;
-import domain.AirPort;
-import domain.City;
-import domain.CityReport;
+import domain.*;
 import keyin.http.client.RestClient;
 
 import java.util.List;
@@ -35,6 +32,8 @@ public class HTTPRestCLIApplication {
 
 
 
+
+
         System.out.println(report.toString());
 
         return report.toString();
@@ -60,6 +59,7 @@ public class HTTPRestCLIApplication {
                     report.append(", ");
                 }
             }
+            report.append("\n");
         }
 
 
@@ -126,6 +126,38 @@ public class HTTPRestCLIApplication {
         }
 
 
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
+    public String generatePassengerAirportReport() {
+       PassengerAirPortReport passengerAirPortReport = getRestClient().getPassenger();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(passengerAirPortReport.getPassenger().getFirstName());
+        report.append(" - ");
+        report.append(passengerAirPortReport.getPassenger().getLastName());
+        report.append(" - ");
+        report.append(passengerAirPortReport.getPassenger().getPhoneNumber());
+        report.append(" - ");
+        report.append("Airports:\n");
+        for(AirPort airport: passengerAirPortReport.getAirports() ){
+            report.append(airport.getId());
+            report.append(" - ");
+            report.append(airport.getName());
+            if (passengerAirPortReport.getAirports().indexOf(airport) != (passengerAirPortReport.getAirports().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
         System.out.println(report.toString());
 
         return report.toString();
@@ -167,7 +199,7 @@ public class HTTPRestCLIApplication {
             if (serverURL.contains("greeting")) {
                 cliApp.listGreetings();
             } else {
-                cliApp.generateAirCraftReport();
+                cliApp.generatePassengerAirportReport();
             }
         }
 

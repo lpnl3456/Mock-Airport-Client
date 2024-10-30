@@ -4,9 +4,9 @@ import java.util.List;
 
 public class AirCraftReport {
 
-    private AirCraft airCraft;
+    private AirCraft aircraft;
     private List<AirPort> airports;
-    private List<Passenger> passangers;
+
 
     public List<AirPort> getAirports() {
         return airports;
@@ -16,19 +16,13 @@ public class AirCraftReport {
         this.airports = airports;
     }
 
-    public List<Passenger> getPassangers() {
-        return passangers;
-    }
 
-    public void setPassangers(List<Passenger> passangers) {
-        this.passangers = passangers;
-    }
 
     public AirCraft getAirCraft() {
-        return airCraft;
+        return aircraft;
     }
 
     public void setAirCraft(AirCraft airCraft) {
-        this.airCraft = airCraft;
+        this.aircraft = airCraft;
     }
 }

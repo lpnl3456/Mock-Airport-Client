@@ -5,10 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import domain.AirCraftReport;
-import domain.AirPort;
-import domain.City;
-import domain.CityReport;
+import domain.*;
 
 import java.io.IOException;
 import java.net.URI;
@@ -185,7 +182,39 @@ public class RestClient {
 
 
 
+    public PassengerAirPortReport getPassenger() {
+        PassengerAirPortReport passenger = new PassengerAirPortReport();
 
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passenger = buildPassengerFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passenger;
+    }
+
+    public PassengerAirPortReport buildPassengerFromResponse(String response) throws JsonProcessingException {
+        PassengerAirPortReport passenger;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passenger = mapper.readValue(response, new TypeReference<PassengerAirPortReport>(){});
+
+        return passenger;
+    }
 
 
 
