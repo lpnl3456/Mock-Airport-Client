@@ -203,6 +203,38 @@ public class HTTPRestCLIApplication {
         return report.toString();
     }
 
+    public String generatePassengerAirCraftReport() {
+        PassengerAirCraftReport passengerAirCraftReport = getRestClient().getAirCraftPassenger();
+
+        StringBuffer report = new StringBuffer();
+
+
+        report.append(passengerAirCraftReport.getPassenger().getFirstName());
+        report.append(" - ");
+        report.append(passengerAirCraftReport.getPassenger().getLastName());
+        report.append(" - ");
+        report.append(passengerAirCraftReport.getPassenger().getPhoneNumber());
+        report.append(" - ");
+        report.append("AirCrafts:\n");
+        for(AirCraft airCraft: passengerAirCraftReport.getAirCrafts() ){
+            report.append(airCraft.getAirCraft_id());
+            report.append(" - ");
+            report.append(airCraft.getType());
+            report.append(" - ");
+            report.append(airCraft.getAirlineName());
+            if (passengerAirCraftReport.getAirCrafts().indexOf(airCraft) != (passengerAirCraftReport.getAirCrafts().size() - 1)) {
+                report.append(", ");
+            }
+        }
+
+
+
+
+        System.out.println(report.toString());
+
+        return report.toString();
+    }
+
     public String generateAllPassengerAirCraftReport() {
         List<PassengerAirCraftReport> passengerAirCraftReports = getRestClient().getAllAirCraftPassengers();
         StringBuffer report = new StringBuffer();

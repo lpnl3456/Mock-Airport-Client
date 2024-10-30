@@ -230,6 +230,33 @@ public class RestClient {
         return passengers;
     }
 
+
+
+
+    public PassengerAirCraftReport getAirCraftPassenger() {
+        PassengerAirCraftReport passenger = new PassengerAirCraftReport();
+
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
+
+        try {
+            HttpResponse<String> response = getClient().send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode()==200) {
+                System.out.println("***** " + response.body());
+            } else {
+                System.out.println("Error Status Code: " + response.statusCode());
+            }
+
+            passenger = buildPassengerAirCraftFromResponse(response.body());
+
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        return passenger;
+    }
+
     public List<PassengerAirCraftReport> getAllAirCraftPassengers() {
         List<PassengerAirCraftReport> passengers = new ArrayList<PassengerAirCraftReport>();
 
@@ -282,6 +309,17 @@ public class RestClient {
         passengers = mapper.readValue(response, new TypeReference<List<PassengerAirCraftReport>>(){});
 
         return passengers;
+    }
+
+    public PassengerAirCraftReport buildPassengerAirCraftFromResponse(String response) throws JsonProcessingException {
+        PassengerAirCraftReport passenger;
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        passenger = mapper.readValue(response, new TypeReference<PassengerAirCraftReport>() {
+        });
+
+        return passenger;
     }
 
 
