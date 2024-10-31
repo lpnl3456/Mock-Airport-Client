@@ -1,6 +1,8 @@
 package keyin.http.cli;
 
-import domain.*;
+import domain.AircraftReport;
+import domain.AirPort;
+import domain.CityReport;
 import keyin.http.client.RestClient;
 
 import java.util.List;
@@ -72,16 +74,16 @@ public class HTTPRestCLIApplication {
 
 
     public String generateAirCraftReport() {
-        AirCraftReport aircraft = getRestClient().getAirCraft();
+        AircraftReport aircraft = getRestClient().getAirCraft();
 
         StringBuffer report = new StringBuffer();
 
 
-        report.append(aircraft.getAirCraft().getAirCraft_id());
+        report.append(aircraft.getAircraft().getAirCraft_id());
         report.append(" - ");
-        report.append(aircraft.getAirCraft().getType());
+        report.append(aircraft.getAircraft().getType());
         report.append(" - ");
-        report.append(aircraft.getAirCraft().getAirlineName());
+        report.append(aircraft.getAircraft().getAirlineName());
         report.append(" - ");
         report.append("Airports:\n");
         for(AirPort airport: aircraft.getAirports() ){
@@ -102,17 +104,17 @@ public class HTTPRestCLIApplication {
     }
 
     public String generateAllAirCraftReport() {
-        List<AirCraftReport> airCrafts = getRestClient().getAllAirCrafts();
+        List<AircraftReport> airCrafts = getRestClient().getAllAirCrafts();
 
         StringBuffer report = new StringBuffer();
 
 
-        for(AirCraftReport airCraft: airCrafts) {
-            report.append(airCraft.getAirCraft().getAirCraft_id());
+        for(AircraftReport airCraft: airCrafts) {
+            report.append(airCraft.getAircraft().getAirCraft_id());
             report.append(" - ");
-            report.append(airCraft.getAirCraft().getType());
+            report.append(airCraft.getAircraft().getType());
             report.append(" - ");
-            report.append(airCraft.getAirCraft().getAirlineName());
+            report.append(airCraft.getAircraft().getAirlineName());
             report.append(" - ");
             report.append("Airports:\n");
             for (AirPort airport : airCraft.getAirports()) {

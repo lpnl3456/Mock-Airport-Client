@@ -1,11 +1,5 @@
 package domain;
 
-import domain.AirCraft;
-import domain.Passenger;
-import domain.FlightDetails;
-import domain.Landing;
-import domain.Landing;
-
 
 import java.util.List;
 
@@ -15,7 +9,7 @@ public class FlightDetails {
     long flight_id;
 
 
-    AirCraft airCraft;
+    Aircraft airCraft;
 
 
     List<Passenger> passengers;
@@ -49,11 +43,11 @@ public class FlightDetails {
         this.passengers = passengers;
     }
 
-    public AirCraft getAirCraft() {
+    public Aircraft getAirCraft() {
         return airCraft;
     }
 
-    public void setAirCraft(AirCraft airCraft) {
+    public void setAirCraft(Aircraft airCraft) {
         this.airCraft = airCraft;
     }
 

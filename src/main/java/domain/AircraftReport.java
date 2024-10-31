@@ -2,9 +2,9 @@ package domain;
 
 import java.util.List;
 
-public class AirCraftReport {
+public class AircraftReport {
 
-    private AirCraft aircraft;
+    private Aircraft aircraft;
     private List<AirPort> airports;
 
 
@@ -16,13 +16,13 @@ public class AirCraftReport {
         this.airports = airports;
     }
 
-
-
-    public AirCraft getAirCraft() {
+    public Aircraft getAircraft() {
         return aircraft;
     }
 
-    public void setAirCraft(AirCraft airCraft) {
+
+    public void setAircraft(Aircraft airCraft) {
         this.aircraft = airCraft;
     }
+
 }

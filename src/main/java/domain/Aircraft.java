@@ -3,21 +3,21 @@ package domain;
 
 
 
-public class AirCraft {
+public class Aircraft {
 
     private int airCraft_id;
     private String type;
     private String airlineName;
     private int numberOfPass;
 
-    public AirCraft() {
+    public Aircraft() {
     }
 
-    public AirCraft(int airCraft_id) {
+    public Aircraft(int airCraft_id) {
         this.airCraft_id = airCraft_id;
     }
 
-    public AirCraft(int airCraft_id, String type, String airlineName, int numberOfPass) {
+    public Aircraft(int airCraft_id, String type, String airlineName, int numberOfPass) {
         this.airCraft_id = airCraft_id;
         this.type = type;
         this.airlineName = airlineName;

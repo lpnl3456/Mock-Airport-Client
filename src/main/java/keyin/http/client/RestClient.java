@@ -5,7 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import domain.*;
+import domain.AircraftReport;
+import domain.CityReport;
 
 import java.io.IOException;
 import java.net.URI;
@@ -112,8 +113,8 @@ public class RestClient {
 
 
 
-    public AirCraftReport getAirCraft() {
-       AirCraftReport airCraft = new AirCraftReport();
+    public AircraftReport getAirCraft() {
+       AircraftReport airCraft = new AircraftReport();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
 
@@ -136,8 +137,8 @@ public class RestClient {
         return airCraft;
     }
 
-    public List<AirCraftReport> getAllAirCrafts() {
-        List<AirCraftReport> airCrafts = new ArrayList<AirCraftReport>();
+    public List<AircraftReport> getAllAirCrafts() {
+        List<AircraftReport> airCrafts = new ArrayList<AircraftReport>();
 
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(serverURL)).build();
 
@@ -160,22 +161,22 @@ public class RestClient {
         return airCrafts;
     }
 
-    public AirCraftReport buildAirCraftFromResponse(String response) throws JsonProcessingException {
-        AirCraftReport aircrafts;
+    public AircraftReport buildAirCraftFromResponse(String response) throws JsonProcessingException {
+        AircraftReport aircrafts;
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        aircrafts = mapper.readValue(response, new TypeReference<AirCraftReport>(){});
+        aircrafts = mapper.readValue(response, new TypeReference<AircraftReport>(){});
 
         return aircrafts;
     }
 
-    public List<AirCraftReport> buildAllAircraftFromResponse(String response) throws JsonProcessingException {
-        List<AirCraftReport> aircrafts;
+    public List<AircraftReport> buildAllAircraftFromResponse(String response) throws JsonProcessingException {
+        List<AircraftReport> aircrafts;
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-        aircrafts = mapper.readValue(response, new TypeReference<List<AirCraftReport>>(){});
+        aircrafts = mapper.readValue(response, new TypeReference<List<AircraftReport>>(){});
 
         return aircrafts;
     }
