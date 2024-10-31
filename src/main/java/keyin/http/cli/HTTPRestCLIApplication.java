@@ -1,8 +1,6 @@
 package keyin.http.cli;
 
-import domain.AircraftReport;
-import domain.AirPort;
-import domain.CityReport;
+import domain.*;
 import keyin.http.client.RestClient;
 
 import java.util.List;
@@ -218,7 +216,7 @@ public class HTTPRestCLIApplication {
         report.append(passengerAirCraftReport.getPassenger().getPhoneNumber());
         report.append(" - ");
         report.append("AirCrafts:\n");
-        for(AirCraft airCraft: passengerAirCraftReport.getAirCrafts() ){
+        for(Aircraft airCraft: passengerAirCraftReport.getAirCrafts() ){
             report.append(airCraft.getAirCraft_id());
             report.append(" - ");
             report.append(airCraft.getType());
@@ -251,7 +249,7 @@ public class HTTPRestCLIApplication {
                 report.append(passengerAirCraftReport.getPassenger().getPhoneNumber());
                 report.append(" - ");
                 report.append("AirCrafts:\n");
-                for (AirCraft airCraft : passengerAirCraftReport.getAirCrafts()) {
+                for (Aircraft airCraft : passengerAirCraftReport.getAirCrafts()) {
                     report.append(airCraft.getAirCraft_id());
                     report.append(" - ");
                     report.append(airCraft.getType());

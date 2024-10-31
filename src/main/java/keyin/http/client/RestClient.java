@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import domain.AircraftReport;
 import domain.CityReport;
+import domain.PassengerAirPortReport;
+import domain.PassengerAirCraftReport;
 
 import java.io.IOException;
 import java.net.URI;
