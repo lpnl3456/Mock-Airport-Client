@@ -120,6 +120,41 @@ public class HTTPRestCLIApplicationTest {
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirportReport().contains("Toronto"));
 
     }
+
+    @Test
+    public void testGenerateAllCityReport(){
+        HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
+
+        List<CityReport> cityReports = new ArrayList<CityReport>();
+        CityReport cityReport1 = new CityReport();
+        City stJohnsCity =  new City(1,"St John's","States", 2000);
+
+        List<AirPort> stJohnsAirports = new ArrayList<AirPort>();
+
+        AirPort airport = new AirPort(1,"St John's", "YYH",stJohnsCity);
+        stJohnsAirports.add(airport);
+        cityReport1.setCity(stJohnsCity);
+        cityReport1.setAirports(stJohnsAirports);
+
+        cityReports.add(cityReport1);
+
+        CityReport cityReport2 = new CityReport();
+        City toronto =  new City(1,"Toronto","Ontario", 2000);
+
+        List<AirPort> torontoAirports = new ArrayList<AirPort>();
+
+        AirPort torontoAirport = new AirPort(1,"Toronto", "HHJ",toronto);
+        torontoAirports.add(torontoAirport);
+        cityReport2.setCity(toronto);
+        cityReport2.setAirports(torontoAirports);
+        cityReports.add(cityReport2);
+
+        Mockito.when(mockRESTClient.getAllCities()).thenReturn(cityReports);
+        httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
+
+        Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAllCityReport().contains("Toronto"));
+
+    }
     }
 
 

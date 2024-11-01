@@ -315,7 +315,7 @@ public class HTTPRestCLIApplication {
             if (serverURL.contains("greeting")) {
                 cliApp.listGreetings();
             } else {
-                cliApp.generateAllPassengerAirCraftReport();
+                cliApp.generateAirCraftReport();
             }
         }
 
