@@ -1,6 +1,5 @@
-import domain.AirPort;
-import domain.City;
-import domain.CityReport;
+
+import domain.*;
 import keyin.http.cli.HTTPRestCLIApplication;
 import keyin.http.client.RestClient;
 import org.junit.jupiter.api.Assertions;
@@ -38,4 +37,30 @@ public class HTTPRestCLIApplicationTest {
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateCityReport().contains("St John's"));
 
     }
+
+    @Test
+    public void testGenerateAircraftReport(){
+        HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
+
+        AircraftReport aircraftReport = new AircraftReport();
+        Aircraft boeing = new Aircraft(1, "Boeing 757", "Pal", 130);
+        City stJohnsCity =  new City(1,"St John's","States", 2000);
+        City deerLakeCity= new City(2,"Deer Lake","States", 2500);
+
+        List<AirPort> airports = new ArrayList<AirPort>();
+
+        AirPort airport1 = new AirPort(1,"St John's", "YYH",stJohnsCity);
+        AirPort airport2 = new AirPort(2,"Deer LAke", "YYZ",deerLakeCity);
+        airports.add(airport1);
+        airports.add(airport2);
+        aircraftReport.setAircraft(boeing);
+        aircraftReport.setAirports(airports);
+
+        Mockito.when(mockRESTClient.getAirCraft()).thenReturn(aircraftReport);
+        httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
+
+        Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAirCraftReport().contains("Boeing 757"));
+
+    }
 }
+
