@@ -69,7 +69,6 @@ public class HTTPRestCLIApplicationTest {
             HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
 
             PassengerAirCraftReport passengerAircraftReport = new PassengerAirCraftReport();
-            City stJohnsCity =  new City(1,"St John's","States", 2000);
             Passenger passenger = new Passenger(1, "John", "Doe", "15678901234");
             Aircraft boeing = new Aircraft(1, "Boeing 757", "Pal", 130);
             Aircraft airbus = new Aircraft(2,"AirBus 380", "Spirit", 120);
@@ -88,6 +87,39 @@ public class HTTPRestCLIApplicationTest {
             Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirCraftReport().contains("Boeing 757"));
 
         }
+    @Test
+    public void testGeneratePassengerAirPortReport(){
+        HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
+
+        PassengerAirPortReport passengerAirPortReport = new PassengerAirPortReport();
+        Passenger passenger = new Passenger(1, "John", "Doe", "15678901234");
+        City stJohnsCity =  new City(1,"St John's","Newfoundland", 2000);
+        City toronto =  new City(2,"Toronto","Ontario", 200000);
+
+
+        AirPort a1 = new AirPort();
+        a1.setName("StJohn's Airport");
+        a1.setCode("AHZ");
+        a1.setCity_id(stJohnsCity);
+
+        AirPort a2 = new AirPort();
+        a2.setName("Toronto Airport");
+        a1.setCode("AVH");
+        a1.setCity_id(toronto);
+
+        List<AirPort> airports = new ArrayList<AirPort>();
+
+       airports.add(a1);
+       airports.add(a2);
+
+       passengerAirPortReport.setPassenger(passenger);
+       passengerAirPortReport.setAirports(airports);
+        Mockito.when(mockRESTClient.getPassenger()).thenReturn(passengerAirPortReport);
+        httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
+
+        Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirportReport().contains("Toronto"));
+
+    }
     }
 
 
