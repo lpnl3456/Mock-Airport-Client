@@ -1,3 +1,4 @@
+
 import domain.*;
 import keyin.http.cli.HTTPRestCLIApplication;
 import keyin.http.client.RestClient;
@@ -62,6 +63,7 @@ public class HTTPRestCLIApplicationTest {
 
     }
 
+
         @Test
         public void testGeneratePassengerAircraftReport(){
             HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
@@ -87,3 +89,4 @@ public class HTTPRestCLIApplicationTest {
 
         }
     }
+
