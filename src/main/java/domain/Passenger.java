@@ -21,12 +21,11 @@ public class Passenger {
         this.passenger_id = passenger_id;
     }
 
-    public Passenger(int passenger_id, String firstName, String lastName, String phoneNumber, City city) {
+    public Passenger(int passenger_id, String firstName, String lastName, String phoneNumber) {
         this.passenger_id = passenger_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.city = city;
     }
 
     public int getPassenger_id() {
