@@ -5,7 +5,7 @@ import java.util.List;
 public class PassengerAirCraftReport {
 
     private Passenger passenger;
-    private List <Aircraft> aircrafts;
+    private List <Aircraft> airCrafts;
 
     public Passenger getPassenger() {
         return passenger;
@@ -16,11 +16,11 @@ public class PassengerAirCraftReport {
     }
 
     public List<Aircraft> getAirCrafts() {
-        return aircrafts;
+        return airCrafts;
     }
 
     public void setAircrafts(List<Aircraft> airCrafts) {
-        this.aircrafts = airCrafts;
+        this.airCrafts = airCrafts;
     }
 }
 
