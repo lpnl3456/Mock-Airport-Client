@@ -61,4 +61,29 @@ public class HTTPRestCLIApplicationTest {
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAirCraftReport().contains("Boeing 757"));
 
     }
-}
+
+        @Test
+        public void testGeneratePassengerAircraftReport(){
+            HTTPRestCLIApplication httpRestCLIApplicationUnderTest = new HTTPRestCLIApplication();
+
+            PassengerAirCraftReport passengerAircraftReport = new PassengerAirCraftReport();
+            City stJohnsCity =  new City(1,"St John's","States", 2000);
+            Passenger passenger = new Passenger(1, "John", "Doe", "15678901234", stJohnsCity);
+            Aircraft boeing = new Aircraft(1, "Boeing 757", "Pal", 130);
+            Aircraft airbus = new Aircraft(2,"AirBus 380", "Spirit", 120);
+
+
+            List<Aircraft> aircrafts = new ArrayList<Aircraft>();
+
+            aircrafts.add(boeing);
+            aircrafts.add(airbus);
+            passengerAircraftReport.setPassenger(passenger);
+            passengerAircraftReport.setAircrafts(aircrafts);
+
+            Mockito.when(mockRESTClient.getAirCraftPassenger()).thenReturn(passengerAircraftReport);
+            httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
+
+            Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirCraftReport().contains("Boeing 757"));
+
+        }
+    }
