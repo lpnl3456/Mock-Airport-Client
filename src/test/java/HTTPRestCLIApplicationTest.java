@@ -70,7 +70,7 @@ public class HTTPRestCLIApplicationTest {
 
             PassengerAirCraftReport passengerAircraftReport = new PassengerAirCraftReport();
             City stJohnsCity =  new City(1,"St John's","States", 2000);
-            Passenger passenger = new Passenger(1, "John", "Doe", "15678901234", stJohnsCity);
+            Passenger passenger = new Passenger(1, "John", "Doe", "15678901234");
             Aircraft boeing = new Aircraft(1, "Boeing 757", "Pal", 130);
             Aircraft airbus = new Aircraft(2,"AirBus 380", "Spirit", 120);
 
