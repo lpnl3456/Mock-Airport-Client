@@ -316,7 +316,7 @@ public class HTTPRestCLIApplication {
                 cliApp.listGreetings();
             } else {
 
-                cliApp.generateAllPassengerAirportReport();
+                cliApp.generateAllAirCraftReport();
 
             }
         }
