@@ -11,8 +11,7 @@ public class City {
     private String state;
     private int population;
 
-    private List<AirPort> airports;
-    private List<Passenger> passengers;
+
 
     public City(){
     }
@@ -26,8 +25,6 @@ public class City {
         this.name = name;
         this.state = state;
         this.population = population;
-        this.airports = airports;
-        this.passengers = passengers;
     }
 
     public City(long city_id, String name, String state, int population) {
@@ -74,23 +71,6 @@ public class City {
     public void setPopulation(int population) {
         this.population = population;
     }
-
-    public List<AirPort> getAirports() {
-        return airports;
-    }
-
-    public void setAirports(List<AirPort> airports) {
-        this.airports = airports;
-    }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passenger) {
-        this.passengers = passenger;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -126,6 +126,8 @@ public class HTTPRestCLIApplication {
                 }
             }
             report.append("\n");
+            report.append("\n");
+
         }
 
 
