@@ -10,7 +10,7 @@ public class HTTPRestCLIApplication {
     private RestClient restClient;
 
     public String generateCityReport() {
-        CityReport city = getRestClient().getCity();
+        CityReport city = getRestClient().getCityReport();
 
         StringBuffer report = new StringBuffer();
 
@@ -40,7 +40,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generateAllCityReport() {
-        List<CityReport> cities = getRestClient().getAllCities();
+        List<CityReport> cities = getRestClient().getAllCityReports();
 
         StringBuffer report = new StringBuffer();
 
@@ -60,6 +60,8 @@ public class HTTPRestCLIApplication {
                 }
             }
             report.append("\n");
+            report.append("\n");
+
         }
 
 
@@ -72,7 +74,7 @@ public class HTTPRestCLIApplication {
 
 
     public String generateAirCraftReport() {
-        AircraftReport aircraft = getRestClient().getAirCraft();
+        AircraftReport aircraft = getRestClient().getAirCraftReport();
 
         StringBuffer report = new StringBuffer();
 
@@ -102,7 +104,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generateAllAirCraftReport() {
-        List<AircraftReport> airCrafts = getRestClient().getAllAirCrafts();
+        List<AircraftReport> airCrafts = getRestClient().getAllAirCraftReports();
 
         StringBuffer report = new StringBuffer();
 
@@ -123,6 +125,7 @@ public class HTTPRestCLIApplication {
                     report.append(", ");
                 }
             }
+            report.append("\n");
         }
 
 
@@ -134,7 +137,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generatePassengerAirportReport() {
-        PassengerAirPortReport passengerAirPortReport = getRestClient().getPassenger();
+        PassengerAirPortReport passengerAirPortReport = getRestClient().getPassengerAirportReport();
 
         StringBuffer report = new StringBuffer();
 
@@ -164,7 +167,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generateAllPassengerAirportReport() {
-        List<PassengerAirPortReport> passengerAirPortReports = getRestClient().getAllPassengers();
+        List<PassengerAirPortReport> passengerAirPortReports = getRestClient().getAllPassengerAirportReports();
 
         StringBuffer report = new StringBuffer();
 
@@ -204,7 +207,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generatePassengerAirCraftReport() {
-        PassengerAirCraftReport passengerAirCraftReport = getRestClient().getAirCraftPassenger();
+        PassengerAirCraftReport passengerAirCraftReport = getRestClient().getAirCraftPassengerReport();
 
         StringBuffer report = new StringBuffer();
 
@@ -236,7 +239,7 @@ public class HTTPRestCLIApplication {
     }
 
     public String generateAllPassengerAirCraftReport() {
-        List<PassengerAirCraftReport> passengerAirCraftReports = getRestClient().getAllAirCraftPassengers();
+        List<PassengerAirCraftReport> passengerAirCraftReports = getRestClient().getAllAirCraftPassengerReports();
         StringBuffer report = new StringBuffer();
 
 
@@ -280,9 +283,6 @@ public class HTTPRestCLIApplication {
     }
 
 
-    private void listGreetings() {
-        System.out.println(getRestClient().getResponseFromHTTPRequest());
-    }
 
     public RestClient getRestClient() {
         if (restClient == null) {
@@ -312,12 +312,40 @@ public class HTTPRestCLIApplication {
 
             cliApp.setRestClient(restClient);
 
-            if (serverURL.contains("greeting")) {
-                cliApp.listGreetings();
-            } else {
+            if (serverURL.contains("city_report/airport/")) {
+                cliApp.generateCityReport();
+            } else if(serverURL.contains("city_report/airports")){
 
                 cliApp.generateAllCityReport();
 
+            }
+
+            else if (serverURL.contains("passenger_aircraft_report/")) {
+                cliApp.generatePassengerAirCraftReport();
+            } else if(serverURL.contains("passenger_aircraft_report")){
+
+                cliApp.generateAllPassengerAirCraftReport();
+
+            }
+
+            else if (serverURL.contains("aircraft_report/")) {
+                cliApp.generateAirCraftReport();
+            } else if(serverURL.contains("aircraft_report")){
+
+                cliApp.generateAllAirCraftReport();
+
+            }
+
+            else if (serverURL.contains("passenger_airport_report/")) {
+                cliApp.generatePassengerAirportReport();
+            } else if(serverURL.contains("passenger_airport_report")){
+
+                cliApp.generateAllPassengerAirportReport();
+
+            }
+
+            else{
+                System.out.println("Invalid URL");
             }
         }
 

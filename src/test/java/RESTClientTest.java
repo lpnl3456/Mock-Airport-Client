@@ -12,7 +12,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        AircraftReport aircraft = restClient.buildAirCraftFromResponse(jsonResponse);
+        AircraftReport aircraft = restClient.buildAirCraftReportFromResponse(jsonResponse);
 
         Assertions.assertTrue(aircraft.getAircraft().getType().equals("Airbus 320"));
     }
@@ -24,7 +24,7 @@ public class RESTClientTest {
 
             RestClient restClient = new RestClient();
 
-            PassengerAirCraftReport passenger = restClient.buildPassengerAirCraftFromResponse(jsonResponse);
+            PassengerAirCraftReport passenger = restClient.buildPassengerAirCraftReportFromResponse(jsonResponse);
 
             Assertions.assertTrue(passenger.getPassenger().getFirstName().equals("Greg"));
         }
@@ -35,7 +35,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        CityReport city = restClient.buildCityFromResponse(jsonResponse);
+        CityReport city = restClient.buildCityReportFromResponse(jsonResponse);
 
         Assertions.assertTrue(city.getCity().getName().equals("Miami"));
     }
@@ -46,7 +46,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        PassengerAirPortReport passenger = restClient.buildPassengerFromResponse(jsonResponse);
+        PassengerAirPortReport passenger = restClient.buildPassengerAirportReportFromResponse(jsonResponse);
 
         Assertions.assertTrue(passenger.getPassenger().getFirstName().equals("Greg"));
     }
@@ -57,7 +57,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        List<PassengerAirPortReport> passenger = restClient.buildAllPassengerFromResponse(jsonResponse);
+        List<PassengerAirPortReport> passenger = restClient.buildAllPassengerAirportReportsFromResponse(jsonResponse);
 
         Assertions.assertTrue(passenger.get(0).getPassenger().getLastName().equals("Thomas"));
     }
@@ -68,7 +68,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        List<AircraftReport> aircrafts = restClient.buildAllAircraftFromResponse(jsonResponse);
+        List<AircraftReport> aircrafts = restClient.buildAllAircraftReportsFromResponse(jsonResponse);
 
         Assertions.assertTrue(aircrafts.get(0).getAircraft().getType().equals("Airbus 320"));
     }
@@ -79,7 +79,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        List<PassengerAirCraftReport> passenger = restClient.buildAllAirCraftPassengerFromResponse(jsonResponse);
+        List<PassengerAirCraftReport> passenger = restClient.buildAllAirCraftPassengerReportsFromResponse(jsonResponse);
 
         Assertions.assertTrue(passenger.get(0).getPassenger().getFirstName().equals("Greg"));
     }
@@ -90,7 +90,7 @@ public class RESTClientTest {
 
         RestClient restClient = new RestClient();
 
-        List<CityReport> city = restClient.buildAllCityFromResponse(jsonResponse);
+        List<CityReport> city = restClient.buildAllCityReportsFromResponse(jsonResponse);
 
         Assertions.assertTrue(city.get(0).getCity().getName().equals("Miami"));
     }
