@@ -31,7 +31,7 @@ public class HTTPRestCLIApplicationTest {
         cityReport.setCity(stJohnsCity);
         cityReport.setAirports(airports);
 
-        Mockito.when(mockRESTClient.getCity()).thenReturn(cityReport);
+        Mockito.when(mockRESTClient.getCityReport()).thenReturn(cityReport);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateCityReport().contains("St John's"));
@@ -56,7 +56,7 @@ public class HTTPRestCLIApplicationTest {
         aircraftReport.setAircraft(boeing);
         aircraftReport.setAirports(airports);
 
-        Mockito.when(mockRESTClient.getAirCraft()).thenReturn(aircraftReport);
+        Mockito.when(mockRESTClient.getAirCraftReport()).thenReturn(aircraftReport);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAirCraftReport().contains("Boeing 757"));
@@ -81,7 +81,7 @@ public class HTTPRestCLIApplicationTest {
             passengerAircraftReport.setPassenger(passenger);
             passengerAircraftReport.setAircrafts(aircrafts);
 
-            Mockito.when(mockRESTClient.getAirCraftPassenger()).thenReturn(passengerAircraftReport);
+            Mockito.when(mockRESTClient.getAirCraftPassengerReport()).thenReturn(passengerAircraftReport);
             httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
             Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirCraftReport().contains("Boeing 757"));
@@ -114,7 +114,7 @@ public class HTTPRestCLIApplicationTest {
 
        passengerAirPortReport.setPassenger(passenger);
        passengerAirPortReport.setAirports(airports);
-        Mockito.when(mockRESTClient.getPassenger()).thenReturn(passengerAirPortReport);
+        Mockito.when(mockRESTClient.getPassengerAirportReport()).thenReturn(passengerAirPortReport);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generatePassengerAirportReport().contains("Toronto"));
@@ -149,7 +149,7 @@ public class HTTPRestCLIApplicationTest {
         cityReport2.setAirports(torontoAirports);
         cityReports.add(cityReport2);
 
-        Mockito.when(mockRESTClient.getAllCities()).thenReturn(cityReports);
+        Mockito.when(mockRESTClient.getAllCityReports()).thenReturn(cityReports);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAllCityReport().contains("Toronto"));
@@ -176,7 +176,7 @@ public class HTTPRestCLIApplicationTest {
 
         airCraftReports.add(aircraftReport);
 
-        Mockito.when(mockRESTClient.getAllAirCrafts()).thenReturn(airCraftReports);
+        Mockito.when(mockRESTClient.getAllAirCraftReports()).thenReturn(airCraftReports);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAllAirCraftReport().contains("Boeing 757"));
@@ -202,7 +202,7 @@ public class HTTPRestCLIApplicationTest {
         passengerAircraftReport.setAircrafts(aircrafts);
         passengerAirCraftReports.add(passengerAircraftReport);
 
-        Mockito.when(mockRESTClient.getAllAirCraftPassengers()).thenReturn(passengerAirCraftReports);
+        Mockito.when(mockRESTClient.getAllAirCraftPassengerReports()).thenReturn(passengerAirCraftReports);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAllPassengerAirCraftReport().contains("John"));
@@ -241,7 +241,7 @@ public class HTTPRestCLIApplicationTest {
         passengerAirPortReport.setAirports(airports);
 
         passengerAirPortReports.add(passengerAirPortReport);
-        Mockito.when(mockRESTClient.getAllPassengers()).thenReturn(passengerAirPortReports);
+        Mockito.when(mockRESTClient.getAllPassengerAirportReports()).thenReturn(passengerAirPortReports);
         httpRestCLIApplicationUnderTest.setRestClient(mockRESTClient);
 
         Assertions.assertTrue(httpRestCLIApplicationUnderTest.generateAllPassengerAirportReport().contains("Toronto"));
