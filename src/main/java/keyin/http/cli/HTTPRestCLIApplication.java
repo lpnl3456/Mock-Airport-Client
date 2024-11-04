@@ -312,9 +312,9 @@ public class HTTPRestCLIApplication {
 
             cliApp.setRestClient(restClient);
 
-            if (serverURL.contains("city_report/airport/")) {
+            if (serverURL.contains("city_report/")) {
                 cliApp.generateCityReport();
-            } else if(serverURL.contains("city_report/airports")){
+            } else if(serverURL.contains("city_report")){
 
                 cliApp.generateAllCityReport();
 
